@@ -1,0 +1,1 @@
+insert into error_log values ('prc_get_students', substr(sqlcode, 1,100), user||substr (sqlerrm, 1, 150), sysdate());
