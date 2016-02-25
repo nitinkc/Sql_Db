@@ -1,0 +1,7 @@
+DECLARE
+v_employee emp%ROWTYPE;
+
+BEGIN
+select * into v_employee from emp;
+
+END;

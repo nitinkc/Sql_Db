@@ -1,0 +1,4 @@
+set SERVEROUTPUT on;
+begin
+Dbms_output.put_line('Hello World');
+end;

@@ -1,0 +1,9 @@
+DECLARE
+
+V_ename varchar2(30); -- this may create problem
+V_job EMP.JOB%TYPE; -- this is problem free
+
+BEGIN
+dbms_output.put_line(v_name||' '||v_dob);
+
+END;
