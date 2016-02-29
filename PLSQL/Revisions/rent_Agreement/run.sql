@@ -8,8 +8,7 @@ AS
   v_errm VARCHAR2(200);
   v_cd VARCHAR2(100);
   BEGIN
-        DBMS_OUTPUT.PUT_LINE(start_date || '---' || end_date || '---' || rate);
-
+    --DBMS_OUTPUT.PUT_LINE(start_date || '---' || end_date || '---' || rate);
     prc_rate_agreement_prob(start_date, end_date, rate); -- invoke procedure
     EXCEPTION
     WHEN wrong_date THEN -- handle exception
@@ -19,7 +18,7 @@ AS
        v_errm := substr(v_errm, 1, 150);-- chop the message out
        v_cd := substr(sqlcode, 1, 100); -- take the sql error code
       INSERT INTO err_log VALUES ('run_rate_agreement',v_cd, v_errm, sysdate, user);
-    DBMS_OUTPUT.PUT_LINE(v_cd || v_errm || sysdate || user);
+      DBMS_OUTPUT.PUT_LINE(v_cd || v_errm || sysdate || user);
       -- if commit is not auto enabled
       COMMIT;
 

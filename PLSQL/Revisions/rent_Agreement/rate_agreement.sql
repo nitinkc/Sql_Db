@@ -25,16 +25,20 @@ AS
 
     new_st_dt := to_date(start_date, 'MM-DD-YYYY');
     new_end_dt := to_date(end_date, 'MM-DD-YYYY');
+    new_rate := rate;
 
-    DBMS_OUTPUT.PUT_LINE('Correct date provided by the user');
-    DBMS_OUTPUT.PUT_LINE(new_st_dt || '---' || new_end_dt || '---' || new_rate);
+    DBMS_OUTPUT.PUT_LINE('Data Provided by the User');
+    DBMS_OUTPUT.PUT_LINE(new_st_dt || ' --- ' || new_end_dt || ' --- ' || new_rate);
 
+    --set up the table
+    --TRUNCATE is DDL (data definition language). You cannot perform DDL from within PL/SQL
+    --PERFORMANCE DEGRADES - NOT RECOMMENDED!!
     BEGIN
-       --set up the table
-      TRUNCATE TABLE rate_Agreement;
+      EXECUTE IMMEDIATE 'TRUNCATE table rate_Agreement';
       insert into rate_agreement values (1, to_date('2010/11/12','yyyy/mm/dd'), to_date('2011/11/11','yyyy/mm/dd'), 1000 );
       COMMIT ;
     END;
+
 
     SELECT
       fromdate,
@@ -57,7 +61,7 @@ AS
     --Scenario 2: New Dates between Old dates
     --Split in three parts. starting and ending is Old rate
     -- while middle one is the new rate
-    -- RUN :  exec run_rate_agreement('02-12-2011', '06-11-2011', 4080);
+    -- RUN :  exec run_rate_agreement('02-12-2011', '06-11-2011', 1250);
     IF (new_st_dt > old_st_dt AND new_end_dt < old_end_dt) THEN
       --starting
       --first segment of old rate
@@ -69,7 +73,6 @@ AS
 
       COMMIT ;
       DBMS_OUTPUT.PUT_LINE('Update Successful');
-
     END IF;
 
     EXCEPTION
