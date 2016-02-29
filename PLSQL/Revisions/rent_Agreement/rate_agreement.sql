@@ -75,6 +75,19 @@ AS
       DBMS_OUTPUT.PUT_LINE('Update Successful');
     END IF;
 
+     -- Scenario 2.1: New Dates between Old dates with new end date overlaps old end date
+    -- RUN : exec run_rate_agreement('02-12-2011', '11-11-2011', 1250);
+     IF (new_st_dt > old_st_dt AND new_end_dt = old_end_dt) THEN
+      --starting
+      --first segment of old rate
+      UPDATE RATE_AGREEMENT SET fromdate = old_st_dt, todate = new_st_dt, amount = old_rate;
+      -- second segment of new rates
+      INSERT INTO RATE_AGREEMENT VALUES (2,new_st_dt, new_end_dt,new_rate);
+      COMMIT ;
+      DBMS_OUTPUT.PUT_LINE('Update Successful');
+    END IF;
+
+
     EXCEPTION
     WHEN TOO_MANY_ROWS THEN
         DBMS_OUTPUT.PUT_LINE('multiple rows');
