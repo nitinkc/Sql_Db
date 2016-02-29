@@ -50,14 +50,14 @@ AS
     WHEN NO_DATA_FOUND THEN
       DBMS_OUTPUT.PUT_LINE('No Employee with Empno : ' || e_number);
     -- inserting error codes in the tables
-      v_errm := sqlerrm(sqlcode); -- take the message from the code
+       v_errm := sqlerrm(sqlcode); -- take the message from the code
        v_errm := substr(v_errm, 1, 150);-- chop the message out
        v_cd := substr(sqlcode, 1, 100); -- take the sql error code
       INSERT INTO err_log VALUES ('prc_learn_type',v_cd, v_errm, sysdate, user);
       -- if commit is not auto enabled
       commit;
     WHEN TOO_MANY_ROWS THEN
-    v_errm := sqlerrm(sqlcode);
+     v_errm := sqlerrm(sqlcode);
      v_errm := substr(v_errm, 1, 150);
      v_cd := substr(sqlcode, 1, 100);
     INSERT INTO err_log VALUES ('prc_learn_type',v_cd, v_errm, sysdate, user);
