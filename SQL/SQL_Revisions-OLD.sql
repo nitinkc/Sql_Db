@@ -176,13 +176,10 @@ alter table tab_3 add address varchar2(50) default 'default address' not null;
 
 /* One to Many : One Person has many 
     Implemented with two tables
-
 */
 
 /* Many to Many : Many Students has many subjects
     Implemented with three tables
-
-
 */
 
 --------------------------------------------------------------------------------
