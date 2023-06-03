@@ -2,7 +2,7 @@
 
 -- Count no of students in each class
 SELECT SC.CLASS_ID, COUNT(1) AS "no_of_students"
-FROM STUDENT_CLASSES SC
+FROM mydb.myschema.STUDENT_CLASSES SC
 GROUP BY SC.CLASS_ID
 ORDER BY SC.CLASS_ID;
 

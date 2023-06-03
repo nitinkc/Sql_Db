@@ -1,5 +1,3 @@
-
-
 /*
 SQL Joins: There are several types of JOIN but we look at the most commonly used:
 1) Inner Join
