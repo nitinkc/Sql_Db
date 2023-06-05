@@ -36,7 +36,7 @@ To access the `psql` [pgadmin](https://www.pgadmin.org/download/) can alsobe use
 [Amazon Sample DB](https://github.com/aws-samples/aws-database-migration-samples/tree/master/PostgreSQL/sampledb/v1)
 
 ```sql
-/Users/nichaurasia/Downloads/aws-database-migration-samples-master/PostgreSQL/sampledb/v1/
+\cd /Users/nichaurasia/Downloads/aws-database-migration-samples-master/PostgreSQL/sampledb/v1/
 
 \i install-postgresql.sql
 ```
@@ -50,10 +50,13 @@ sudo -iu postgres psql
 psql -h localhost -d mydb -U admin -p 5432 -a -q -f /Users/nichaurasia/Downloads/aws-database-migration-samples-master/PostgreSQL/sampledb/v1/install-postgresql.sql
 ```
 
+If the path of the script is set, then the installation should be smooth and spits out the following logs `install-postgresql.sql`
 
+##### Logs
 ```log
 mydb=# \cd /Users/nichaurasia/Downloads/aws-database-migration-samples-master/PostgreSQL/sampledb/v1/
 mydb=# \i install-postgresql.sql
+
  Setting appropriate search path 
 ---------------------------------
  
