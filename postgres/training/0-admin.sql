@@ -17,3 +17,11 @@ GRANT USAGE ON SCHEMA hospital TO random_auditors;
 -- After the Audit is done, remove the access
 revoke select on patient_record_view from random_auditors;
 
+
+-- Create a Schema
+create schema imdb;
+create schema banking;
+create schema sales;
+create schema painting;
+CREATE SCHEMA creditCard;
+CREATE SCHEMA joins;

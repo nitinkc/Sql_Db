@@ -1,65 +1,68 @@
-drop table if exists Customer_Accounts;
-drop table if exists Transactions;
-drop table if exists Accounts;
-drop table if exists Customers;
-drop table if exists products;
-drop table if exists Employees;
+DROP TABLE IF EXISTS CUSTOMER_ACCOUNTS;
+DROP TABLE IF EXISTS TRANSACTIONS;
+DROP TABLE IF EXISTS ACCOUNTS;
+DROP TABLE IF EXISTS CUSTOMERS;
+DROP TABLE IF EXISTS PRODUCTS;
+DROP TABLE IF EXISTS EMPLOYEES;
 
 
-create table products
+CREATE TABLE PRODUCTS
 (
-	prod_id		varchar(10) primary key,
-	prod_name	varchar(100) not null
+	PROD_ID		VARCHAR(10) PRIMARY KEY,
+	PROD_NAME	VARCHAR(100) NOT NULL
 );
 
-create table Employees
+CREATE TABLE EMPLOYEES
 (
-	Emp_ID		varchar(10),
-	Emp_Name	varchar(100),
-	Salary		float,
-	gender		varchar(10) check (gender in ('M', 'F')),
-	constraint pk_emp primary key (emp_id)
+	EMP_ID		VARCHAR(10),
+	EMP_NAME	VARCHAR(100),
+	SALARY		FLOAT,
+	GENDER		VARCHAR(10) CHECK (GENDER IN ('M', 'F')),
+	CONSTRAINT PK_EMP PRIMARY KEY (EMP_ID)
 );
 
-create table Customers
+CREATE TABLE CUSTOMERS
 (
-	Customer_ID		varchar(10),
-	First_Name		varchar(40),
-	Last_Name		varchar(40),
-	Phone			bigint,
-	Address			varchar(200),
-	dob				date,
-	constraint pk_cust primary key(customer_id)
+	CUSTOMER_ID		VARCHAR(10),
+	FIRST_NAME		VARCHAR(40),
+	LAST_NAME		VARCHAR(40),
+	PHONE			BIGINT,
+	ADDRESS			VARCHAR(200),
+	DOB				DATE,
+	CONSTRAINT PK_CUST PRIMARY KEY(CUSTOMER_ID)
 );
 
-create table Accounts
+CREATE TABLE ACCOUNTS
 (
-	Account_No			bigint primary key,
-	Balance				int,
-	Account_Status		varchar(10) check (Account_Status in ('Active', 'Inactive', 'Suspended', 'On hold')),
-	Date_of_Opening		date
+	ACCOUNT_NO			BIGINT PRIMARY KEY,
+	BALANCE				INT,
+	ACCOUNT_STATUS		VARCHAR(10) CHECK (ACCOUNT_STATUS IN ('ACTIVE', 'INACTIVE', 'SUSPENDED', 'ON HOLD')),
+	DATE_OF_OPENING		DATE
 );
 
-create table Transactions
+CREATE TABLE TRANSACTIONS
 (
-	Transaction_ID		int generated always as identity,
-	Transaction_Date	date,
-	Transaction_amount	float,
-	Credit_Debit_flag	varchar(1),
-	Account_No			bigint,
-	constraint fk_acc foreign key (Account_No) references Accounts(Account_No)
+	TRANSACTION_ID		INT GENERATED ALWAYS AS IDENTITY,
+	TRANSACTION_DATE	DATE,
+	TRANSACTION_AMOUNT	FLOAT,
+	CREDIT_DEBIT_FLAG	VARCHAR(1),
+	ACCOUNT_NO			BIGINT,
+	CONSTRAINT FK_ACC FOREIGN KEY (ACCOUNT_NO) REFERENCES ACCOUNTS(ACCOUNT_NO)
 );
 
-create table Customer_Accounts
+CREATE TABLE CUSTOMER_ACCOUNTS
 (
-	Customer_ID		varchar(10),
-	Account_No		bigint,
-	prod_id			varchar(10),
-	constraint fk_acc1 foreign key (Customer_ID) references Customers(Customer_ID),
-	constraint fk_acc2 foreign key (Account_No) references Accounts(Account_No),
-	constraint fk_acc3 foreign key (prod_id) references Products(prod_id)
+	CUSTOMER_ID		VARCHAR(10),
+	ACCOUNT_NO		BIGINT,
+	PROD_ID			VARCHAR(10),
+	CONSTRAINT FK_ACC1 FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID),
+	CONSTRAINT FK_ACC2 FOREIGN KEY (ACCOUNT_NO) REFERENCES ACCOUNTS(ACCOUNT_NO),
+	CONSTRAINT FK_ACC3 FOREIGN KEY (PROD_ID) REFERENCES PRODUCTS(PROD_ID)
 );
 
+------------#################################--------------
+----------------------- INSERT DATA -----------------------
+------------#################################--------------
 
 insert into products values ('PRD0001', 'Savings Account');
 insert into products (prod_id, prod_name) values ('PRD0002', 'Current Account');
@@ -79,12 +82,12 @@ insert into Customers values ('C4', 'Maryam', 'Parveen', 9900889944, 'Delhi', to
 insert into Customers values ('C5', 'Steven', 'Smith', null, 'Chennai', to_date('20-12-1994', 'dd-mm-yyyy'));
 insert into Customers values ('C6', 'Jason', 'Holder', null, 'Chennai', to_date('01-02-1995', 'dd-mm-yyyy'));
 
-insert into Accounts values (1100444101, 100, 'Active', to_date('01-01-2020','dd-mm-yyyy'));
-insert into Accounts values (1100444102, 900, 'Active', to_date('10-01-2020','dd-mm-yyyy'));
-insert into Accounts values (1100444103, 500, 'Active', to_date('21-11-2021','dd-mm-yyyy'));
-insert into Accounts values (1100444104, 1100, 'Active', to_date('15-10-2022','dd-mm-yyyy'));
-insert into Accounts values (1100444105, 2200, 'Active', to_date('10-12-2022','dd-mm-yyyy'));
-insert into Accounts values (1100444106, 3300, 'Active', to_date('05-11-2022','dd-mm-yyyy'));
+insert into Accounts values (1100444101, 100, upper('Active'), to_date('01-01-2020','dd-mm-yyyy'));
+insert into Accounts values (1100444102, 900, upper('Active'), to_date('10-01-2020','dd-mm-yyyy'));
+insert into Accounts values (1100444103, 500, upper('Active'), to_date('21-11-2021','dd-mm-yyyy'));
+insert into Accounts values (1100444104, 1100, upper('Active'), to_date('15-10-2022','dd-mm-yyyy'));
+insert into Accounts values (1100444105, 2200, upper('Active'), to_date('10-12-2022','dd-mm-yyyy'));
+insert into Accounts values (1100444106, 3300, upper('Active'), to_date('05-11-2022','dd-mm-yyyy'));
 
 insert into Transactions values (default,current_date, 200, 'C', 1100444101);
 insert into Transactions (Transaction_Date, Transaction_Amount, Credit_Debit_flag, Account_No) values (current_date-1, 100, 'C', 1100444101);

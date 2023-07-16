@@ -1,13 +1,6 @@
-set define off
-
-select * from Sales_order;
-select * from Customers;
-select * from Products;
-
-
-drop table Sales_order;
-drop table Customers;
-drop table Products;
+DROP TABLE IF exists Sales_order;
+DROP TABLE IF exists Customers;
+DROP TABLE IF exists Products;
 
 create table Products
 (
@@ -32,7 +25,7 @@ create table Customers
 
 create table Sales_order
 (
-    order_number        number  generated always as identity primary key,
+    order_number        bigserial primary key,
     quantity_ordered    int check (quantity_ordered > 0),
     price_each          float,
     sales               float,
@@ -48,7 +41,9 @@ create table Sales_order
 alter table Sales_order add constraint chk_ord_sts
 check (status in ('Cancelled', 'Disputed', 'In Process', 'On Hold', 'Resolved', 'Shipped'));
 
-
+------------#################################--------------
+----------------------- INSERT DATA -----------------------
+------------#################################--------------
 
 insert into products(PRODUCT_CODE,PRODUCT_LINE,PRICE) values ('S10_1678','Motorcycles','95');
 insert into products(PRODUCT_CODE,PRODUCT_LINE,PRICE) values ('S10_1949','Classic Cars','214');
@@ -255,7 +250,12 @@ insert into customers values ('C89','Gift Ideas Corp.'					,'2035554407'			,'244
 insert into customers values ('C90','Bavarian Collectables Imports, Co.','+49 89 61 08 9555'	,'Hansastr. 15','Munich','','80686','Germany');
 insert into customers values ('C91','Royale Belge'						,'(071) 23 67 2555'		,'Boulevard Tirou, 255','Charleroi','','B-6000','Belgium');
 insert into customers values ('C92','Auto-Moto Classics Inc.'			,'6175558428'			,'16780 Pompton St.','Brickhaven','MA','58339','USA');
+--Inserting Null countries to test NVL/COALEASE
+insert into customers values ('C1000','Land of Toys Inc.','2125557818','897 Long Airport Avenue','NYC','NY','10022',null);
+insert into customers values ('C1001','Land of Toys Inc.','2125557818','897 Long Airport Avenue','NYC','NY','10022',null);
+insert into customers values ('C1002','Land of Toys Inc.','2125557818','897 Long Airport Avenue','NYC','NY','10022',null);
 
+--delete from customers where customer_id in ('C1000','C1001','C1002');
 
 
 insert into sales_order values (DEFAULT,'30','95.7','2871',to_date('2/24/2003','mm/dd/yyyy'),'Shipped','1','2','2003','S10_1678','C1','Small');
@@ -3083,3 +3083,8 @@ insert into sales_order values (DEFAULT,'34','62.24','2116.16',to_date('3/28/200
 insert into sales_order values (DEFAULT,'47','65.52','3079.44',to_date('05/06/2005','mm/dd/yyyy'),'On Hold','2','5','2005','S72_3212','C59','Medium');
 
 commit;
+
+
+select * from Sales_order LIMIT 5;
+select * from Customers LIMIT 5;
+select * from Products LIMIT 5;
