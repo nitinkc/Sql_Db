@@ -393,3 +393,59 @@ CREATE VIEW
 CREATE VIEW
 mydb=# 
 ```
+
+
+# Gooogle Spanner Emulator
+
+Pre requisites
+    * Google CLI installed
+    * Docker installed, up and running
+
+```sh
+#Optional
+gcloud components update 
+
+gcloud emulators spanner start
+```
+
+## Setup Cloud Spanner Project & Instance
+
+```sh
+# If confir is present then no need to run
+gcloud config configurations create emulator
+# Disable authentication
+gcloud config set auth/disable_credentials true
+# Create test project
+gcloud config set project sql-spanner-project
+# Set API override
+gcloud config set api_endpoint_overrides/spanner http://localhost:9020/
+# Set the config
+gcloud config configurations activate emulator
+
+```
+
+### Run from DBeaver
+
+Select the DB connection to Google Spanner. Ensure that the Driver Properties is set to true `autoConfigEmulator : true`
+
+Connect with the DB via Emulator.
+
+### Run from CLI
+```sh
+#Set Congit
+gcloud config configurations activate emulator
+
+# Create Instance
+gcloud spanner instances create test-instance --config=emulator-config --description=”MySpannerDbInstance” --nodes=1
+# Create DB 
+gcloud spanner databases create test-database --instance test-instance --ddl "CREATE TABLE TestTable (Key INT64, Value STRING(MAX)) RIMARY KEY (Key)"
+# Insert Data
+gcloud spanner rows insert --table=TestTable --database=test-database --instance=test-instance --data=Key=1,Value=TestValue1
+
+# Run SQL commands
+gcloud spanner databases execute-sql test-database --instance test-instance --sql "select * from TestTable"
+``` 
+
+### Load Data into Spanner Emulator
+
+Follow this link [https://github.com/nitinkc/springboot-spanner-db#create-spanner-table-from-cloud-console](https://github.com/nitinkc/springboot-spanner-db#create-spanner-table-from-cloud-console)
