@@ -212,13 +212,15 @@ select * from Sales_order;
 select * from Customers;
 select * from Products;
 
-4) Identify how many cars, Motorcycles, trains and ships are available in the inventory.
-Treat all type of cars as just "Cars".
+-- 4) Identify how many cars, Motorcycles, trains and ships are available in the inventory.
+-- Treat all type of cars as just "Cars".
 
 
-select case when product_line like '%Cars%' then 'Cars' 
-			else product_line 
-	   end as products
+select 
+	case 
+		when product_line like '%Cars%' then 'Cars' 
+		else product_line 
+	end as products
 , count(1) as no_of_vehicles
 from Products
 where product_line in ('Motorcycles','Trains','Ships','Classic Cars','Vintage Cars')
@@ -231,30 +233,23 @@ select case when product_line like '%Cars%' then 'Cars'
 , count(1) as no_of_vehicles
 from Products
 where product_line in ('Motorcycles','Trains','Ships','Classic Cars','Vintage Cars')
-group by case when product_line like '%Cars%' then 'Cars' 
-				else product_line 
-		   end;
-
--- from Kevin:
-select 'cars' from Products where product_line like'%Cars%' UNION for each vehicle group
-
--- Lakshmi
-select sum(product_line) from products where product_ine like %cars%
-
--- Hatvika:
-select sum(case when product_line like 'cars%' then 1 else else 0 ) end as
+group by 
+	case 
+		when product_line like '%Cars%' then 'Cars' 
+		else product_line 
+	end;
 
 
 -- Solution using UNION:
 select product_line
-, count(1) as no_of_vehicles
-from Products
-where product_line in ('Motorcycles','Trains','Ships')
-group by product_line
+	, count(1) as no_of_vehicles
+	from Products
+	where product_line in ('Motorcycles','Trains','Ships')
+	group by product_line
 union
 select 'Cars' as prd, count(1) as no_of_vehicles
-from products 
-where product_line like '%Cars%'
+	from products 
+	where product_line like '%Cars%'
 
 
 
@@ -263,7 +258,7 @@ select * from Sales_order;
 select * from Customers;
 select * from Products;
 
-6) Find the countries which have done more than 10 motorcycles orders.
+-- 6) Find the countries which have done more than 10 motorcycles orders.
 
 select c.country, count(1) as no_of_orders
 from Sales_order s
@@ -273,7 +268,6 @@ where p.product_line = 'Motorcycles'
 group by c.country
 having count(1) > 10
 order by no_of_orders desc;
-
 
 
 -- Order of Execution:
