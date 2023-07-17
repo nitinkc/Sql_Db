@@ -45,12 +45,18 @@ ON A.Colour = B.Colour;
  
 SELECT A.Colour, B.Colour 
 FROM A LEFT OUTER JOIN B 
-ON A.Colour = B.Colour WHERE B.Colour IS NULL;
+ON A.Colour = B.Colour 
+WHERE B.Colour IS NULL;
 
 -- Right Outer Join
 SELECT A.Colour, B.Colour 
 FROM A RIGHT OUTER JOIN B 
 ON A.Colour = B.Colour;
+
+SELECT A.Colour, B.Colour 
+FROM A RIGHT OUTER JOIN B 
+ON A.Colour = B.Colour
+AND a.colour IS NULL ;
 
 --Full outer Join
 SELECT A.Colour, B.Colour 

@@ -28,10 +28,16 @@ JOIN STAFF STF ON CLS.TEACHER_ID = STF.STAFF_ID
 WHERE SUB.SUBJECT_NAME = 'Mathematics';
 
 
--- Fetch all staff who teach grade 8, 9, 10 and also fetch all the non-teaching staff
--- UNION can be used to merge two differnt queries. UNION returns always unique records so any duplicate data while merging these queries will be eliminated.
--- UNION ALL displays all records including the duplicate records.
--- When using both UNION, UNION ALL operators, rememeber that noo of columns and their data type must match among the different queries.
+/* Fetch all staff who teach grade 8, 9, 10 and also fetch all the non-teaching staff
+UNION & UNION ALL are used to merge two differnt queries. 
+
+UNION returns always unique records so any duplicate data while merging these queries will be eliminated.
+
+UNION ALL displays all records including the duplicate records.
+
+When using both UNION, UNION ALL operators, the number of columns and 
+their data type must match among the different queries.
+*/
 SELECT STF.STAFF_TYPE
 ,    (STF.FIRST_NAME||' '||STF.LAST_NAME) AS FULL_NAME
 ,    STF.AGE
@@ -45,7 +51,8 @@ WHERE STF.STAFF_TYPE = 'Teaching'
 AND   CLS.CLASS_NAME IN ('Grade 8', 'Grade 9', 'Grade 10')
 UNION ALL
 SELECT STAFF_TYPE
-,    (FIRST_NAME||' '||LAST_NAME) AS FULL_NAME, AGE
+,    (FIRST_NAME||' '||LAST_NAME) AS FULL_NAME
+, 	 AGE
 ,    (CASE WHEN GENDER = 'M' THEN 'Male'
            WHEN GENDER = 'F' THEN 'Female'
       END) AS GENDER

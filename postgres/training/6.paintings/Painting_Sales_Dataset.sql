@@ -1,3 +1,8 @@
+CREATE SCHEMA IF NOT EXISTS painting;
+
+SET search_path TO painting;
+SHOW search_path;
+
 DROP TABLE IF exists paintings;
 DROP TABLE IF exists artists;
 DROP TABLE IF exists collectors;

@@ -1,4 +1,4 @@
-SET search_path TO sales, public;
+SET search_path TO creditcard;
 SHOW search_path;
 
 --- PROBLEMS ---

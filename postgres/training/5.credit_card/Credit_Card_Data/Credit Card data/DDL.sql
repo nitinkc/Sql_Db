@@ -1,3 +1,8 @@
+CREATE SCHEMA IF NOT EXISTS creditcard;
+
+SET search_path TO creditcard;
+SHOW search_path;
+
 drop table if exists Card_base;
 create table if not exists Card_base
 (
