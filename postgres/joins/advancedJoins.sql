@@ -1,3 +1,8 @@
+CREATE SCHEMA IF NOT EXISTS hospital;
+
+SET search_path TO student, public;
+SHOW search_path;
+
 /*
 SQL Joins: There are several types of JOIN but we look at the most commonly used:
 1) Inner Join
@@ -5,11 +10,9 @@ SQL Joins: There are several types of JOIN but we look at the most commonly used
 2) Outer Join
     - Left Outer Join
         - Left join fetches all records from left table and the matching records from right table.
-        - The count of the query will be the count of the Left table.
         - Columns which are fetched from right table and do not have a match will be passed as NULL.
     - Right Outer Join
         - Right join fetches all records from right table and the matching records from left table.
-        - The count of the query will be the count of the right table.
         - Columns which are fetched from left table and do not have a match will be passed as NULL.
     - Full Outer Join
         - Full join always return the matching and non-matching records from both left and right table.

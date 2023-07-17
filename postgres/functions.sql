@@ -1,3 +1,6 @@
+SET search_path TO student, public;
+SHOW search_path;
+
 select to_char(current_date, 'yyyy') as year;
 select extract(year from current_date ) as year;
 

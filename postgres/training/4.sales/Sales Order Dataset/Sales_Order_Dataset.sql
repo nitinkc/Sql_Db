@@ -1,3 +1,8 @@
+CREATE SCHEMA IF NOT EXISTS sales;
+
+SET search_path TO sales, public;
+SHOW search_path;
+
 DROP TABLE IF exists Sales_order;
 DROP TABLE IF exists Customers;
 DROP TABLE IF exists Products;

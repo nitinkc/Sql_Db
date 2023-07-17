@@ -1,3 +1,6 @@
+SET search_path TO student, public;
+SHOW search_path;
+
 SELECT STAFF_TYPE FROM STAFF ; -- Returns lot of duplicate data.
 SELECT DISTINCT STAFF_TYPE FROM STAFF ; -- Returns unique values only.
 

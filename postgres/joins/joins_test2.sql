@@ -17,8 +17,16 @@ select * from table4;
 -- Inner join, intersection
 select *
 from table3 t3
-join table4 t4 on t3.id1 = t4.id2;
+join table4 t4 
+on t3.id1 = t4.id2;
 
+--Another way of Writing Inner Query without JOIN KEY WORD
+select *
+from table3 t3, table4 t4 
+WHERE t3.id1 = t4.id2;
+
+
+-- LEFT JOIN
 select *
 from table3 t3
 left join table4 t4 on t3.id1 = t4.id2;

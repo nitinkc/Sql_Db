@@ -1,3 +1,6 @@
+SET search_path TO imdb, public;
+SHOW search_path;
+
 -- 2) Fetch only the name and release year for all movies.
 select series_title, released_year
 from imdb_top_movies; 

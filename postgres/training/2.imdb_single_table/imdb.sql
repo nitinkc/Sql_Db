@@ -1,4 +1,7 @@
-create schema imdb;
+CREATE SCHEMA IF NOT EXISTS imdb;
+
+SET search_path TO imdb, public;
+SHOW search_path;
 
 drop table if exists imdb_top_movies;
 create table if not exists imdb_top_movies

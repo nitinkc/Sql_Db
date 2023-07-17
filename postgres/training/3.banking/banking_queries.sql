@@ -1,3 +1,6 @@
+SET search_path TO banking, public;
+SHOW search_path;
+
 -- 1) Fetch the transaction id, date and amount of all debit transactions.
 select t.transaction_id, t.transaction_date 
 from transactions t 

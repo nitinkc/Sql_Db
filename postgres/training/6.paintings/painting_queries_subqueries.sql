@@ -1,3 +1,6 @@
+SET search_path TO sales, public;
+SHOW search_path;
+
 -- SUBQUERIES
 -- A query inside another query.
 

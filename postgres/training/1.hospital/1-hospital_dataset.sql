@@ -1,3 +1,8 @@
+CREATE SCHEMA IF NOT EXISTS hospital;
+
+SET search_path TO hospital, public;
+SHOW search_path;
+
 -- CREATING THE REST OF THE TABLES IN THE SCHEMA --
 drop table if exists hospitals;
 create table hospitals

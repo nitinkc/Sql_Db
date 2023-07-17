@@ -1,3 +1,6 @@
+SET search_path TO sales, public;
+SHOW search_path;
+
 --- PROBLEMS ---
 
 1) How many customers have done transactions over 49000?

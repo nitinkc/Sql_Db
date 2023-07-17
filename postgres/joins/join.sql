@@ -1,5 +1,7 @@
+SET search_path TO student;
+SHOW search_path;
 
--- JOINS (Two ways to write SQL queries):
+-- INNER JOINS - Intersection of the two tables (Two ways to write SQL queries):
 -- #1. Using JOIN keyword between tables in FROM clause.
 SELECT  T1.COLUMN1 AS C1, T1.COLUMN2 C2, T2.COLUMN3 AS C3    -- C1, C2, C3 are aliase to the column
   FROM  TABLE1    T1 JOIN  TABLE2 AS T2 

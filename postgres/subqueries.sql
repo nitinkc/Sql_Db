@@ -1,3 +1,6 @@
+SET search_path TO student, public;
+SHOW search_path;
+
 --SUBQUERY: Query written inside a query is called subquery.
 -- Fetch the details of parents having more than 1 kids going to this school. Also display student details.
 SELECT (P.FIRST_NAME||' '||P.LAST_NAME) AS PARENT_NAME

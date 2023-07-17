@@ -23,6 +23,12 @@ select * from student_classes;
 select * from student_parent;
 */
 
+CREATE SCHEMA IF NOT EXISTS student;
+--ALTER SCHEMA myschema RENAME TO student;
+
+SET search_path TO student, public;
+SHOW search_path;
+
 -- Dropping tables...
 DROP TABLE IF EXISTS STUDENT_CLASSES CASCADE;
 DROP TABLE IF EXISTS STUDENT_PARENT CASCADE;

@@ -1,3 +1,6 @@
+SET search_path TO sales, public;
+SHOW search_path;
+
 select * from Sales_order;
 select * from Customers;
 select * from Products;

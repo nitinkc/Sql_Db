@@ -1,3 +1,8 @@
+CREATE SCHEMA IF NOT EXISTS joins;
+
+SET search_path TO joins, public;
+SHOW search_path;
+
 -- Scenario 1
 DROP TABLE IF EXISTS table1;
 create table table1

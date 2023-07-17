@@ -1,3 +1,8 @@
+CREATE SCHEMA IF NOT EXISTS hospital;
+
+SET search_path TO hospital, public;
+SHOW search_path;
+
 DROP VIEW if exists hospital.patient_record_view;
 
 create or replace view patient_record_view as
