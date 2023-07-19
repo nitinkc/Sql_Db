@@ -318,7 +318,9 @@ select substring('2-10B,Bangalore:JP Nagar#Slikboard,500072'
 				 
 --- ASSIGNMENTS --- 
 
-1) Find the average sales order price based on deal size
+1) Find the average sales order price based on deal SIZE
+
+
 2) Find total no of orders per each day. Sort data based on highest orders.
 3) Display the total sales figure for each quarter. Represent each quarter with their respective period.
 4) Identify how many cars, Motorcycles, trains and ships are available in the inventory.
