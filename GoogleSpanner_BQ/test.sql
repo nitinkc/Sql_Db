@@ -1,0 +1,20 @@
+SELECT
+	E.PATIENT_ID,
+	EP.MASTER_PATIENT_IDENTIFIER,
+	TF.ENCOUNTER_ID,
+	E.ENCOUNTER_DATE,
+	TF.TREATMENT_FULFILLMENT_ID,
+	TF.ACTUAL_RUN_TIME_DURATION,
+FROM
+	`cwow-encounter-qa-9bcd.cwow_encounter.ENCOUNTER` E
+JOIN `cwow-encounter-qa-9bcd.cwow_encounter.ENCOUNTER_PATIENT` EP               
+ ON
+	E.PATIENT_ID = EP.PATIENT_ID
+JOIN `cwow-encounter-qa-9bcd.cwow_encounter.TREATMENT_FULFILLMENT` TF    
+ ON
+	TF.ENCOUNTER_ID = E.ENCOUNTER_ID
+WHERE
+	DATE(E.ENCOUNTER_DATE) = date('2024-03-08')
+	and 1 = "1"
+	and e.patient_id = '65edaa42-933c-3363-baa4-b6c0e4f0b623'
+	and e.ENCOUNTER_ID ="8 b7b195b-5 d83-3514-ab7b-897535954 b53"
